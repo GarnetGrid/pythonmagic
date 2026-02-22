@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games — PythonMagic</title>
+    <meta name="description"
+        content="Play Python-themed games: Snake, Memory Match, and Speed Coding — all in the browser.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="python-icon">🐍</span>
+            PythonMagic
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html" class="active">Games</a></li>
+            <li><a href="widgets.html">Widgets</a></li>
+            <li><a href="magic.html">Magic</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><span class="gradient-text">🎮 Python Games</span></h1>
+        <p class="subtitle">Three classic games reimagined with Python flavor. Use keyboard controls to play.</p>
+    </div>
+
+    <!-- Snake Game -->
+    <section class="section game-container" id="snake-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(72,199,116,0.15)">🐍</span> Snake Game</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info">
+                    <span>Score: <strong id="snake-score">0</strong></span>
+                    <span>Best: <strong id="snake-best">0</strong></span>
+                    <span>Speed: <strong id="snake-speed">1</strong></span>
+                </div>
+                <div>
+                    <button class="btn btn-game btn-sm" id="snake-start">▶ Start</button>
+                    <button class="btn btn-sm" id="snake-reset" style="color:var(--text-secondary)">↺ Reset</button>
+                </div>
+            </div>
+            <div class="game-canvas-wrapper">
+                <canvas id="snake-canvas" width="400" height="400"></canvas>
+            </div>
+            <p style="text-align:center;padding:0 1rem 1rem;color:var(--text-secondary);font-size:0.85rem;">
+                Arrow keys or WASD to move · Eat 🐍 logos to grow · Don't hit the walls!
+            </p>
+        </div>
+    </section>
+
+    <!-- Memory Match -->
+    <section class="section game-container" id="memory-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(255,212,59,0.12)">🧠</span> Memory Match
+        </h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info">
+                    <span>Moves: <strong id="memory-moves">0</strong></span>
+                    <span>Pairs: <strong id="memory-pairs">0</strong>/<strong id="memory-total">8</strong></span>
+                    <span>Time: <strong id="memory-time">0:00</strong></span>
+                </div>
+                <button class="btn btn-game btn-sm" id="memory-reset">↺ New Game</button>
+            </div>
+            <div class="memory-grid" id="memory-grid"></div>
+            <p style="text-align:center;padding:0 1rem 1rem;color:var(--text-secondary);font-size:0.85rem;">
+                Flip cards to find matching Python keywords!
+            </p>
+        </div>
+    </section>
+
+    <!-- Typing Challenge -->
+    <section class="section game-container" id="typing-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(183,148,244,0.12)">⌨️</span> Speed Coder
+        </h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info">
+                    <span>WPM: <strong id="typing-wpm">0</strong></span>
+                    <span>Accuracy: <strong id="typing-accuracy">100%</strong></span>
+                    <span>Time: <strong id="typing-time">0:00</strong></span>
+                </div>
+                <button class="btn btn-game btn-sm" id="typing-reset">↺ New Snippet</button>
+            </div>
+            <div class="typing-display" id="typing-display" tabindex="0"></div>
+            <div class="typing-stats">
+                <span>Press any key to begin typing · Tab for a new snippet</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">🐍 PythonMagic</div>
+        <p>Built with 💛 and Python</p>
+        <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;min-width:14px"><defs><linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient><linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient><linearGradient id="gf3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs><style>@keyframes facet-shimmer{0%,100%{opacity:0}15%{opacity:.9}30%{opacity:0}}@keyframes gem-rotate{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-3deg) scale(1.02)}}@keyframes sparkle-pop{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}.gem-body{transform-origin:12px 12px;animation:gem-rotate 4s ease-in-out infinite}.shimmer-1{animation:facet-shimmer 3s ease-in-out infinite}.shimmer-2{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:1s}.shimmer-3{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:2s}.sparkle{transform-origin:center;animation:sparkle-pop 2.5s ease-in-out infinite}.sparkle:nth-child(2){animation-delay:.8s}.sparkle:nth-child(3){animation-delay:1.6s}</style><g class="gem-body"><polygon points="12,22 4,10 20,10" fill="url(#gf1)"/><polygon points="4,10 8,3 12,6 12,10" fill="url(#gf2)"/><polygon points="20,10 16,3 12,6 12,10" fill="url(#gf3)"/><polygon points="8,3 12,1.5 16,3 12,6" fill="#e63946"/><polygon points="4,10 12,10 12,22" fill="url(#gf2)" opacity=".7"/><polygon points="20,10 12,10 12,22" fill="url(#gf1)" opacity=".8"/><polygon class="shimmer-1" points="4,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-2" points="20,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-3" points="8,3 12,1.5 16,3 12,6" fill="white" opacity="0"/></g><g><circle class="sparkle" cx="3" cy="5" r=".8" fill="white" opacity="0"/><circle class="sparkle" cx="21" cy="4" r=".6" fill="white" opacity="0"/><circle class="sparkle" cx="22" cy="16" r=".7" fill="white" opacity="0"/></g></svg>
+            GarnetGrid
+        </a>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/games.js"></script>
+</body>
+
+</html>

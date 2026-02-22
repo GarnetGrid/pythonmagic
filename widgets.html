@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Widgets — PythonMagic</title>
+    <meta name="description"
+        content="Interactive Python widgets: live code editor, sorting visualizer, and data type explorer.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="python-icon">🐍</span>
+            PythonMagic
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="widgets.html" class="active">Widgets</a></li>
+            <li><a href="magic.html">Magic</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><span class="gradient-text">💻 Live Widgets</span></h1>
+        <p class="subtitle">Run real Python in the browser, visualize algorithms, explore data types — zero installation
+            required.</p>
+    </div>
+
+    <!-- Live Python Editor -->
+    <section class="section widget-container" id="editor-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(255,212,59,0.12)">💻</span> Live Python
+            Editor</h2>
+        <p style="color:var(--text-secondary);margin-bottom:1rem;">
+            Powered by <strong style="color:var(--py-yellow)">Pyodide</strong> — real CPython compiled to WebAssembly.
+            Write Python and run it instantly.
+        </p>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info">
+                    <span>Language: <strong>Python 3.11</strong></span>
+                    <span>Engine: <strong>Pyodide / WASM</strong></span>
+                </div>
+                <div>
+                    <select id="editor-examples" class="btn btn-sm"
+                        style="background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--glass-border);cursor:pointer;border-radius:var(--radius-sm);padding:0.4rem 0.8rem;font-family:var(--font-ui);">
+                        <option value="">📂 Examples</option>
+                        <option value="hello">Hello World</option>
+                        <option value="fib">Fibonacci</option>
+                        <option value="zen">Zen of Python</option>
+                        <option value="sort">Sorting</option>
+                        <option value="class">Classes</option>
+                        <option value="comprehension">List Comprehension</option>
+                        <option value="math">Math Magic</option>
+                    </select>
+                    <button class="btn btn-game btn-sm" id="editor-run">▶ Run</button>
+                    <button class="btn btn-sm" id="editor-clear" style="color:var(--text-secondary)">🗑 Clear</button>
+                </div>
+            </div>
+            <div class="code-editor">
+                <div class="code-input-wrapper">
+                    <textarea class="code-input" id="code-input" spellcheck="false"
+                        placeholder="# Write Python here..."># Welcome to PythonMagic! 🐍
+# This runs REAL Python in your browser.
+
+def greet(name):
+    return f"Hello, {name}! Welcome to PythonMagic ✨"
+
+message = greet("World")
+print(message)
+
+# Try some math
+import math
+print(f"\nπ = {math.pi:.10f}")
+print(f"e = {math.e:.10f}")
+print(f"√2 = {math.sqrt(2):.10f}")
+
+# List comprehension magic
+squares = {x: x**2 for x in range(1, 11)}
+for num, sq in squares.items():
+    print(f"  {num}² = {sq}")</textarea>
+                </div>
+                <div class="code-output" id="code-output">
+                    <span style="color:var(--text-secondary)">← Click ▶ Run to execute</span>
+                </div>
+            </div>
+            <div class="editor-toolbar">
+                <div class="status" id="pyodide-status">
+                    <span class="dot loading"></span>
+                    <span>Loading Pyodide...</span>
+                </div>
+                <span style="font-family:var(--font-code);font-size:0.75rem;color:var(--text-secondary);">Ctrl+Enter to
+                    run</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sorting Visualizer -->
+    <section class="section widget-container" id="sort-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(48,105,152,0.15)">📊</span> Sorting
+            Visualizer</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="sort-controls">
+                    <button class="btn btn-sm btn-primary" data-algo="bubble">Bubble Sort</button>
+                    <button class="btn btn-sm btn-secondary" data-algo="quick">Quick Sort</button>
+                    <button class="btn btn-sm btn-secondary" data-algo="merge">Merge Sort</button>
+                    <button class="btn btn-sm btn-secondary" data-algo="insertion">Insertion Sort</button>
+                </div>
+                <div style="display:flex;align-items:center;gap:1rem;">
+                    <label
+                        style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                        Size: <input type="range" id="sort-size" min="10" max="80" value="40" style="width:100px;">
+                    </label>
+                    <label
+                        style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                        Speed: <input type="range" id="sort-speed" min="1" max="100" value="50" style="width:80px;">
+                    </label>
+                    <button class="btn btn-sm btn-game" id="sort-shuffle">🔀 Shuffle</button>
+                </div>
+            </div>
+            <div class="sort-canvas-wrapper" id="sort-bars"></div>
+            <div
+                style="padding:0.75rem 1.5rem;border-top:1px solid var(--glass-border);display:flex;justify-content:space-between;font-family:var(--font-code);font-size:0.8rem;color:var(--text-secondary);">
+                <span>Comparisons: <strong id="sort-comparisons" style="color:var(--py-yellow)">0</strong></span>
+                <span>Swaps: <strong id="sort-swaps" style="color:var(--py-yellow)">0</strong></span>
+                <span id="sort-status">Ready</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data Type Explorer -->
+    <section class="section widget-container" id="type-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(183,148,244,0.12)">🔎</span> Data Type
+            Explorer</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info"><span>Click a type to explore its properties and methods</span></div>
+            </div>
+            <div class="type-grid" id="type-grid"></div>
+            <div class="type-detail" id="type-detail"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">🐍 PythonMagic</div>
+        <p>Built with 💛 and Python</p>
+        <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;min-width:14px"><defs><linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient><linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient><linearGradient id="gf3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs><style>@keyframes facet-shimmer{0%,100%{opacity:0}15%{opacity:.9}30%{opacity:0}}@keyframes gem-rotate{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-3deg) scale(1.02)}}@keyframes sparkle-pop{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}.gem-body{transform-origin:12px 12px;animation:gem-rotate 4s ease-in-out infinite}.shimmer-1{animation:facet-shimmer 3s ease-in-out infinite}.shimmer-2{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:1s}.shimmer-3{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:2s}.sparkle{transform-origin:center;animation:sparkle-pop 2.5s ease-in-out infinite}.sparkle:nth-child(2){animation-delay:.8s}.sparkle:nth-child(3){animation-delay:1.6s}</style><g class="gem-body"><polygon points="12,22 4,10 20,10" fill="url(#gf1)"/><polygon points="4,10 8,3 12,6 12,10" fill="url(#gf2)"/><polygon points="20,10 16,3 12,6 12,10" fill="url(#gf3)"/><polygon points="8,3 12,1.5 16,3 12,6" fill="#e63946"/><polygon points="4,10 12,10 12,22" fill="url(#gf2)" opacity=".7"/><polygon points="20,10 12,10 12,22" fill="url(#gf1)" opacity=".8"/><polygon class="shimmer-1" points="4,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-2" points="20,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-3" points="8,3 12,1.5 16,3 12,6" fill="white" opacity="0"/></g><g><circle class="sparkle" cx="3" cy="5" r=".8" fill="white" opacity="0"/><circle class="sparkle" cx="21" cy="4" r=".6" fill="white" opacity="0"/><circle class="sparkle" cx="22" cy="16" r=".7" fill="white" opacity="0"/></g></svg>
+            GarnetGrid
+        </a>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/widgets.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generative Art Studio — PythonMagic</title>
+    <meta name="description"
+        content="Full-screen generative art studio with Flow Fields, Strange Attractors, Reaction-Diffusion, and L-Systems.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎨</text></svg>">
+</head>
+
+<body>
+    <!-- Full-screen canvas -->
+    <div class="viz-fullpage">
+        <canvas id="genart-canvas"></canvas>
+    </div>
+
+    <!-- Back button -->
+    <a href="magic.html" class="viz-back-btn">← Magic</a>
+
+    <!-- Algorithm tabs (top center) -->
+    <div class="viz-mode-bar" id="genart-tabs">
+        <button class="genart-tab active" data-algo="flowfield">🌬️ Flow Fields</button>
+        <button class="genart-tab" data-algo="attractor">🌀 Attractors</button>
+        <button class="genart-tab" data-algo="reaction">🧫 Reaction-Diffusion</button>
+        <button class="genart-tab" data-algo="lsystem">🌿 L-Systems</button>
+    </div>
+
+    <!-- Floating action buttons -->
+    <div class="viz-fab" style="top:1rem;right:1rem;">
+        <button class="viz-fab-btn viz-primary" id="genart-randomize">🎲 Randomize</button>
+        <button class="viz-fab-btn" id="genart-export" style="color:var(--accent-green)">📸 Export PNG</button>
+    </div>
+
+    <!-- Right panel - Flow Field controls -->
+    <div class="viz-controls-panel viz-panel-right genart-algo-controls" id="genart-controls-flowfield">
+        <button class="viz-panel-toggle genart-panel-toggle">✕</button>
+        <div class="viz-panel-body">
+            <div class="viz-panel-title">🌬️ Flow Fields</div>
+            <div class="viz-control-row">
+                <label>Noise Scale</label>
+                <input type="range" id="genart-ff-scale" min="1" max="30" value="5">
+                <span class="viz-val" id="genart-ff-scale-val">5</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Particles</label>
+                <input type="range" id="genart-ff-count" min="500" max="5000" value="2000" step="100">
+                <span class="viz-val" id="genart-ff-count-val">2000</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Speed</label>
+                <input type="range" id="genart-ff-speed" min="5" max="50" value="20">
+                <span class="viz-val" id="genart-ff-speed-val">20</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right panel - Attractor controls -->
+    <div class="viz-controls-panel viz-panel-right genart-algo-controls" id="genart-controls-attractor"
+        style="display:none;">
+        <button class="viz-panel-toggle genart-panel-toggle">✕</button>
+        <div class="viz-panel-body">
+            <div class="viz-panel-title">🌀 Strange Attractors</div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+                <button class="viz-preset-pill genart-attractor-btn active" data-type="lorenz">Lorenz</button>
+                <button class="viz-preset-pill genart-attractor-btn" data-type="aizawa">Aizawa</button>
+                <button class="viz-preset-pill genart-attractor-btn" data-type="thomas">Thomas</button>
+                <button class="viz-preset-pill genart-attractor-btn" data-type="halvorsen">Halvorsen</button>
+            </div>
+            <div class="viz-control-row">
+                <label>Speed</label>
+                <input type="range" id="genart-att-speed" min="1" max="30" value="10">
+                <span class="viz-val" id="genart-att-speed-val">10</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Trail</label>
+                <input type="range" id="genart-att-trail" min="1000" max="15000" value="5000" step="500">
+                <span class="viz-val" id="genart-att-trail-val">5000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right panel - Reaction-Diffusion controls -->
+    <div class="viz-controls-panel viz-panel-right genart-algo-controls" id="genart-controls-reaction"
+        style="display:none;">
+        <button class="viz-panel-toggle genart-panel-toggle">✕</button>
+        <div class="viz-panel-body">
+            <div class="viz-panel-title">🧫 Reaction-Diffusion</div>
+            <div class="viz-control-row">
+                <label>Feed Rate</label>
+                <input type="range" id="genart-rd-feed" min="10" max="80" value="55">
+                <span class="viz-val" id="genart-rd-feed-val">55</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Kill Rate</label>
+                <input type="range" id="genart-rd-kill" min="45" max="70" value="62">
+                <span class="viz-val" id="genart-rd-kill-val">62</span>
+            </div>
+            <hr class="viz-panel-divider">
+            <div class="viz-panel-title">Patterns</div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+                <button class="viz-preset-pill genart-rd-preset" data-rdpreset="mitosis">🔬 Mitosis</button>
+                <button class="viz-preset-pill genart-rd-preset" data-rdpreset="coral">🪸 Coral</button>
+                <button class="viz-preset-pill genart-rd-preset" data-rdpreset="maze">🧩 Maze</button>
+                <button class="viz-preset-pill genart-rd-preset" data-rdpreset="spots">🐆 Spots</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right panel - L-System controls -->
+    <div class="viz-controls-panel viz-panel-right genart-algo-controls" id="genart-controls-lsystem"
+        style="display:none;">
+        <button class="viz-panel-toggle genart-panel-toggle">✕</button>
+        <div class="viz-panel-body">
+            <div class="viz-panel-title">🌿 L-Systems</div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+                <button class="viz-preset-pill genart-ls-preset active" data-lspreset="tree">🌳 Tree</button>
+                <button class="viz-preset-pill genart-ls-preset" data-lspreset="bush">🌿 Bush</button>
+                <button class="viz-preset-pill genart-ls-preset" data-lspreset="fern">🌾 Fern</button>
+                <button class="viz-preset-pill genart-ls-preset" data-lspreset="snowflake">❄️ Snowflake</button>
+            </div>
+            <div class="viz-control-row">
+                <label>Angle</label>
+                <input type="range" id="genart-ls-angle" min="5" max="90" value="22">
+                <span class="viz-val" id="genart-ls-angle-val">22</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Iterations</label>
+                <input type="range" id="genart-ls-iter" min="1" max="7" value="4">
+                <span class="viz-val" id="genart-ls-iter-val">4</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="viz-onboarding" id="genart-onboarding">
+        <div class="viz-onboarding-content">
+            <div class="viz-onboard-icon">🎨</div>
+            <h2>Generative Art Studio</h2>
+            <p>Algorithmic art — tweak parameters, switch algorithms, export as wallpaper</p>
+            <div class="viz-onboard-hint">Click anywhere to begin · Use tabs to switch algorithms · Export as PNG</div>
+        </div>
+    </div>
+
+    <script src="js/magic-genart.js"></script>
+</body>
+
+</html>

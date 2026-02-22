@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychedelic Kaleidoscope — PythonMagic</title>
+    <meta name="description"
+        content="Full-screen psychedelic kaleidoscope with 8-fold symmetry, hue cycling, and warp effects.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌈</text></svg>">
+</head>
+
+<body>
+    <!-- Full-screen canvas -->
+    <div class="viz-fullpage" id="kaleidoscope-wrap">
+        <canvas id="kaleidoscope-canvas"></canvas>
+    </div>
+
+    <!-- Back button -->
+    <a href="magic.html" class="viz-back-btn">← Magic</a>
+
+    <!-- Floating left panel -->
+    <div class="viz-controls-panel viz-panel-left" id="kscope-panel">
+        <button class="viz-panel-toggle" id="kscope-toggle">✕</button>
+        <div class="viz-panel-body">
+            <div class="viz-panel-title">🌈 Kaleidoscope</div>
+
+            <div class="viz-control-row">
+                <label>Symmetry</label>
+                <input type="range" id="kscope-symmetry" min="2" max="32" value="8">
+                <span class="viz-val" id="kscope-sym-val">8</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Brush Size</label>
+                <input type="range" id="kscope-brush" min="1" max="30" value="4">
+                <span class="viz-val" id="kscope-brush-val">4</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Hue Speed</label>
+                <input type="range" id="kscope-hue-speed" min="0" max="20" value="2">
+                <span class="viz-val" id="kscope-hue-val">2</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Trail Length</label>
+                <input type="range" id="kscope-trail" min="0" max="100" value="92">
+                <span class="viz-val" id="kscope-trail-val">92</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Glow</label>
+                <input type="range" id="kscope-glow" min="0" max="60" value="20">
+                <span class="viz-val" id="kscope-glow-val">20</span>
+            </div>
+            <div class="viz-control-row">
+                <label>Warp</label>
+                <input type="range" id="kscope-warp" min="0" max="100" value="0">
+                <span class="viz-val" id="kscope-warp-val">0</span>
+            </div>
+
+            <hr class="viz-panel-divider">
+            <div class="viz-panel-title">Toggles</div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+                <button class="viz-preset-pill active" id="kscope-rainbow">🌈 Rainbow</button>
+                <button class="viz-preset-pill" id="kscope-mirror">🪞 Mirror</button>
+                <button class="viz-preset-pill" id="kscope-auto-paint">🤖 Auto</button>
+            </div>
+
+            <hr class="viz-panel-divider">
+            <div class="viz-panel-title">Presets</div>
+            <div style="display:flex;gap:0.4rem;flex-wrap:wrap;">
+                <button class="viz-preset-pill" data-preset="acid">🍄 Acid</button>
+                <button class="viz-preset-pill" data-preset="space">🌌 Space</button>
+                <button class="viz-preset-pill" data-preset="neon">💜 Neon</button>
+                <button class="viz-preset-pill" data-preset="gold">✨ Gold</button>
+                <button class="viz-preset-pill" data-preset="ocean">🌊 Ocean</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating action buttons -->
+    <div class="viz-fab" style="top:1rem;right:1rem;">
+        <button class="viz-fab-btn" id="kscope-clear">🗑 Clear</button>
+        <button class="viz-fab-btn" id="kscope-fullscreen">⛶ Fullscreen</button>
+    </div>
+
+    <!-- HUD -->
+    <div class="viz-hud">
+        <span>FPS: <strong id="kscope-fps">60</strong></span>
+        <span>Hue: <strong id="kscope-hue-display" style="color:var(--py-yellow)">0°</strong></span>
+        <span>Strokes: <strong id="kscope-strokes" style="color:var(--py-blue-light)">0</strong></span>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="viz-onboarding" id="kscope-onboarding">
+        <div class="viz-onboarding-content">
+            <div class="viz-onboard-icon">🌈</div>
+            <h2>Psychedelic Kaleidoscope</h2>
+            <p>Move your mouse to paint with kaleidoscopic symmetry</p>
+            <div class="viz-onboard-hint">Click anywhere to begin · Scroll to resize brush · Double-click to burst</div>
+        </div>
+    </div>
+
+    <script src="js/magic-kaleidoscope.js"></script>
+</body>
+
+</html>

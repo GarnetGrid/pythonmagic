@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PythonMagic — Where Code Becomes Magic</title>
+    <meta name="description"
+        content="Explore Python through interactive games, live widgets, and magical visual effects — all running in your browser.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="python-icon">🐍</span>
+            PythonMagic
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="widgets.html">Widgets</a></li>
+            <li><a href="magic.html">Magic</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <canvas id="hero-particles" style="position:absolute;inset:0;z-index:0;pointer-events:none;"></canvas>
+        <div style="position:relative;z-index:1;">
+            <div class="hero-badge">
+                <span class="pulse"></span>
+                Interactive Python Playground
+            </div>
+            <h1><span class="gradient-text">Where Code</span><br>Becomes Magic ✨</h1>
+            <p class="subtitle">
+                Play Python-scripted games, experiment with live widgets, and witness
+                visual effects that seem like pure magic — all powered by Python in your browser.
+            </p>
+            <div class="hero-cta">
+                <a href="games.html" class="btn btn-primary">🎮 Play Games</a>
+                <a href="widgets.html" class="btn btn-secondary">💻 Try Widgets</a>
+                <a href="magic.html" class="btn btn-secondary">✨ See Magic</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <h2 class="gradient-text">Explore the Playground</h2>
+        <p class="section-subtitle">Three worlds of interactive Python — pick your adventure.</p>
+        <div class="feature-grid">
+            <a href="games.html" class="feature-card glass-card">
+                <div class="card-icon">🎮</div>
+                <h3>Python Games</h3>
+                <p>Classic games reimagined with a Python twist. Play Snake, test your memory with Python keywords, or
+                    race against the clock typing real code.</p>
+                <div class="card-tags">
+                    <span class="tag">snake</span>
+                    <span class="tag">memory</span>
+                    <span class="tag">typing</span>
+                </div>
+            </a>
+            <a href="widgets.html" class="feature-card glass-card">
+                <div class="card-icon">💻</div>
+                <h3>Live Widgets</h3>
+                <p>Run real Python code in your browser with Pyodide, visualize sorting algorithms in motion, and
+                    explore data types interactively.</p>
+                <div class="card-tags">
+                    <span class="tag">pyodide</span>
+                    <span class="tag">sorting</span>
+                    <span class="tag">explorer</span>
+                </div>
+            </a>
+            <a href="magic.html" class="feature-card glass-card">
+                <div class="card-icon">✨</div>
+                <h3>Visual Magic</h3>
+                <p>Witness Python code rain, generate fractals, consult the Magic 8-Ball, and play with a particle
+                    physics sandbox.</p>
+                <div class="card-tags">
+                    <span class="tag">fractals</span>
+                    <span class="tag">particles</span>
+                    <span class="tag">canvas</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat-item">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Playable Games</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="3">0</div>
+            <div class="stat-label">Live Widgets</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="4">0</div>
+            <div class="stat-label">Magic Effects</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number" data-target="0">0</div>
+            <div class="stat-label">Servers Required</div>
+        </div>
+    </div>
+
+    <!-- Code Showcase -->
+    <section class="section" style="padding-top:4rem;">
+        <div class="glass-card" style="max-width:700px;margin:0 auto;text-align:center;">
+            <h3 style="margin-bottom:1rem;">🐍 Powered by Python in the Browser</h3>
+            <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+                Thanks to <strong style="color:var(--py-yellow);">Pyodide</strong>, this site runs actual
+                CPython — compiled to WebAssembly. No servers, no installs, pure magic.
+            </p>
+            <pre
+                style="background:rgba(0,0,0,0.3);padding:1.2rem;border-radius:var(--radius-sm);text-align:left;font-family:var(--font-code);font-size:0.85rem;color:var(--text-code);overflow-x:auto;"><code><span style="color:var(--py-blue-light)">import</span> this
+
+<span style="color:var(--text-secondary)"># The Zen of Python, by Tim Peters</span>
+<span style="color:var(--text-secondary)"># Beautiful is better than ugly.</span>
+<span style="color:var(--text-secondary)"># Simple is better than complex.</span>
+<span style="color:var(--text-secondary)"># Complex is better than complicated.</span>
+
+<span style="color:var(--py-blue-light)">print</span>(<span style="color:var(--accent-green)">"Welcome to PythonMagic!"</span>)</code></pre>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">🐍 PythonMagic</div>
+        <p>Built with 💛 and Python — no servers harmed in the making.</p>
+        <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;min-width:14px"><defs><linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient><linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient><linearGradient id="gf3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs><style>@keyframes facet-shimmer{0%,100%{opacity:0}15%{opacity:.9}30%{opacity:0}}@keyframes gem-rotate{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-3deg) scale(1.02)}}@keyframes sparkle-pop{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}.gem-body{transform-origin:12px 12px;animation:gem-rotate 4s ease-in-out infinite}.shimmer-1{animation:facet-shimmer 3s ease-in-out infinite}.shimmer-2{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:1s}.shimmer-3{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:2s}.sparkle{transform-origin:center;animation:sparkle-pop 2.5s ease-in-out infinite}.sparkle:nth-child(2){animation-delay:.8s}.sparkle:nth-child(3){animation-delay:1.6s}</style><g class="gem-body"><polygon points="12,22 4,10 20,10" fill="url(#gf1)"/><polygon points="4,10 8,3 12,6 12,10" fill="url(#gf2)"/><polygon points="20,10 16,3 12,6 12,10" fill="url(#gf3)"/><polygon points="8,3 12,1.5 16,3 12,6" fill="#e63946"/><polygon points="4,10 12,10 12,22" fill="url(#gf2)" opacity=".7"/><polygon points="20,10 12,10 12,22" fill="url(#gf1)" opacity=".8"/><polygon class="shimmer-1" points="4,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-2" points="20,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-3" points="8,3 12,1.5 16,3 12,6" fill="white" opacity="0"/></g><g><circle class="sparkle" cx="3" cy="5" r=".8" fill="white" opacity="0"/><circle class="sparkle" cx="21" cy="4" r=".6" fill="white" opacity="0"/><circle class="sparkle" cx="22" cy="16" r=".7" fill="white" opacity="0"/></g></svg>
+            GarnetGrid
+        </a>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

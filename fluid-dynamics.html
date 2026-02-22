@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluid Dynamics — PythonMagic</title>
+    <meta name="description"
+        content="Full-screen 2D Navier-Stokes fluid dynamics simulator with real-time dye injection.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌊</text></svg>">
+</head>
+
+<body>
+    <!-- Full-screen canvas -->
+    <div class="viz-fullpage" style="cursor:crosshair;">
+        <canvas id="fluid-canvas"></canvas>
+    </div>
+
+    <!-- Back button -->
+    <a href="magic.html" class="viz-back-btn">← Magic</a>
+
+    <!-- Floating action -->
+    <div class="viz-fab" style="top:1rem;right:1rem;">
+        <button class="viz-fab-btn" id="fluid-clear">🗑 Clear</button>
+    </div>
+
+    <!-- Preset bar (top center) -->
+    <div class="viz-preset-bar" style="top:1rem;left:50%;transform:translateX(-50%);">
+        <button class="viz-preset-pill fluid-preset" data-preset="lava">🌋 Lava Lamp</button>
+        <button class="viz-preset-pill fluid-preset" data-preset="ink">🖋️ Ink Drop</button>
+        <button class="viz-preset-pill fluid-preset" data-preset="aurora">🌌 Aurora</button>
+        <button class="viz-preset-pill fluid-preset" data-preset="smoke">💨 Smoke</button>
+    </div>
+
+    <!-- Floating bottom panel -->
+    <div class="viz-controls-panel viz-panel-bottom" id="fluid-panel">
+        <button class="viz-panel-toggle" id="fluid-toggle">✕</button>
+        <div class="viz-panel-body" style="display:flex;gap:1.5rem;flex-wrap:wrap;align-items:flex-end;">
+            <div style="flex:1;min-width:150px;">
+                <div class="viz-control-row">
+                    <label>Viscosity</label>
+                    <input type="range" id="fluid-viscosity" min="0" max="50" value="1">
+                    <span class="viz-val" id="fluid-visc-val">1</span>
+                </div>
+                <div class="viz-control-row">
+                    <label>Diffusion</label>
+                    <input type="range" id="fluid-diffusion" min="0" max="50" value="1">
+                    <span class="viz-val" id="fluid-diff-val">1</span>
+                </div>
+            </div>
+            <div style="flex:1;min-width:150px;">
+                <div class="viz-control-row">
+                    <label>Force</label>
+                    <input type="range" id="fluid-force" min="50" max="500" value="200">
+                    <span class="viz-val" id="fluid-force-val">200</span>
+                </div>
+                <div class="viz-control-row">
+                    <label>Brush</label>
+                    <input type="range" id="fluid-brush" min="2" max="20" value="8">
+                    <span class="viz-val" id="fluid-brush-val">8</span>
+                </div>
+            </div>
+            <div style="flex:1;min-width:150px;">
+                <div class="viz-control-row">
+                    <label>Dye Hue</label>
+                    <input type="range" id="fluid-hue" min="0" max="360" value="0">
+                    <span class="viz-val" id="fluid-hue-val">0°</span>
+                </div>
+                <div style="display:flex;gap:0.4rem;margin-top:0.3rem;">
+                    <button class="viz-preset-pill active" id="fluid-rainbow">🌈 Rainbow</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Onboarding -->
+    <div class="viz-onboarding" id="fluid-onboarding">
+        <div class="viz-onboarding-content">
+            <div class="viz-onboard-icon">🌊</div>
+            <h2>Fluid Dynamics Simulator</h2>
+            <p>Click & drag to inject colorful dye into a real Navier-Stokes simulation</p>
+            <div class="viz-onboard-hint">Click anywhere to begin · Try the presets at the top</div>
+        </div>
+    </div>
+
+    <script src="js/magic-fluid.js"></script>
+</body>
+
+</html>

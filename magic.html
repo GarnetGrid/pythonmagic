@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic — PythonMagic</title>
+    <meta name="description"
+        content="Visual effects that seem like magic: code rain, fractals, Magic 8-Ball, and particle physics sandbox.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-brand">
+            <span class="python-icon">🐍</span>
+            PythonMagic
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="games.html">Games</a></li>
+            <li><a href="widgets.html">Widgets</a></li>
+            <li><a href="magic.html" class="active">Magic</a></li>
+        </ul>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><span class="gradient-text">✨ Visual Magic</span></h1>
+        <p class="subtitle">Effects that seem impossible — all powered by code. Interact with every one.</p>
+    </div>
+
+    <!-- Code Rain -->
+    <section class="section game-container" id="rain-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(72,199,116,0.15)">🌧️</span> Python Code
+            Rain</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info"><span>Matrix-style Python code falling endlessly</span></div>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                    <label
+                        style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                        Density: <input type="range" id="rain-density" min="10" max="100" value="50"
+                            style="width:80px;">
+                    </label>
+                    <label
+                        style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                        Color:
+                        <select id="rain-color"
+                            style="background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--glass-border);border-radius:var(--radius-sm);padding:0.3rem 0.5rem;font-size:0.85rem;cursor:pointer;">
+                            <option value="green">Green</option>
+                            <option value="blue">Blue</option>
+                            <option value="yellow">Yellow</option>
+                            <option value="purple">Purple</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+            <div class="magic-canvas-wrapper" style="min-height:350px;">
+                <canvas id="code-rain-canvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fractal Generator -->
+    <section class="section game-container" id="fractal-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(255,212,59,0.12)">🌀</span> Fractal
+            Generator</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info"><span>Click to zoom into the Mandelbrot set</span></div>
+                <div style="display:flex;gap:0.5rem;">
+                    <select id="fractal-palette" class="btn btn-sm"
+                        style="background:rgba(255,255,255,0.05);color:var(--text-secondary);border:1px solid var(--glass-border);cursor:pointer;border-radius:var(--radius-sm);padding:0.4rem 0.8rem;font-family:var(--font-ui);">
+                        <option value="fire">🔥 Fire</option>
+                        <option value="ocean">🌊 Ocean</option>
+                        <option value="psychedelic">🌈 Psychedelic</option>
+                        <option value="mono">⚪ Mono</option>
+                    </select>
+                    <button class="btn btn-sm btn-game" id="fractal-reset">↺ Reset</button>
+                </div>
+            </div>
+            <div class="magic-canvas-wrapper" style="min-height:400px;">
+                <canvas id="fractal-canvas"></canvas>
+            </div>
+            <div
+                style="padding:0.75rem 1.5rem;border-top:1px solid var(--glass-border);font-family:var(--font-code);font-size:0.8rem;color:var(--text-secondary);display:flex;justify-content:space-between;">
+                <span>Zoom: <strong id="fractal-zoom" style="color:var(--py-yellow)">1x</strong></span>
+                <span>Max iterations: <strong style="color:var(--py-yellow)">200</strong></span>
+                <span>Click to zoom · Right-click to zoom out</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Magic 8-Ball -->
+    <section class="section game-container" id="ball-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(48,105,152,0.15)">🎱</span> Python Magic
+            8-Ball</h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="eight-ball-container">
+                <p style="color:var(--text-secondary);font-size:0.95rem;">Ask a question, then click the ball to reveal
+                    Python wisdom...</p>
+                <div class="eight-ball" id="eight-ball">
+                    <div class="eight-ball-window">
+                        <div class="eight-ball-answer" id="eight-ball-answer">🐍</div>
+                    </div>
+                </div>
+                <input type="text" id="eight-ball-question" placeholder="Type your question..."
+                    style="width:100%;max-width:400px;padding:0.75rem 1.2rem;background:rgba(255,255,255,0.05);border:1px solid var(--glass-border);border-radius:var(--radius-md);color:var(--text-primary);font-family:var(--font-ui);font-size:0.95rem;outline:none;text-align:center;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Particle Sandbox -->
+    <section class="section game-container" id="particle-section">
+        <h2 class="section-title"><span class="icon" style="background:rgba(183,148,244,0.12)">✨</span> Particle Sandbox
+        </h2>
+        <div class="game-area glass-card" style="padding:0;">
+            <div class="game-toolbar">
+                <div class="game-info"><span>Click & drag to spawn particles · Double-click for explosion</span></div>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                    <label
+                        style="font-size:0.85rem;color:var(--text-secondary);display:flex;align-items:center;gap:0.5rem;">
+                        Gravity: <input type="range" id="particle-gravity" min="0" max="100" value="50"
+                            style="width:80px;">
+                    </label>
+                    <button class="btn btn-sm" id="particle-clear" style="color:var(--text-secondary)">🗑 Clear</button>
+                </div>
+            </div>
+            <div class="magic-canvas-wrapper" style="min-height:400px;cursor:crosshair;">
+                <canvas id="particle-canvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <!-- =========================================
+         🖼️ VISUALIZER GALLERY
+         ========================================= -->
+    <section class="section" id="visualizer-gallery">
+        <h2 class="section-title"><span class="icon"
+                style="background:linear-gradient(135deg,rgba(255,0,128,0.2),rgba(0,255,255,0.2))">🎆</span> Immersive
+            Visualizers</h2>
+        <p
+            style="text-align:center;color:var(--text-secondary);margin-bottom:2rem;max-width:600px;margin-left:auto;margin-right:auto;">
+            Full-screen interactive experiences — each one a standalone visual playground powered by code.
+        </p>
+
+        <div class="viz-gallery-grid">
+
+            <!-- Kaleidoscope Card -->
+            <a href="kaleidoscope.html" class="viz-gallery-card viz-card-kaleidoscope">
+                <div class="viz-gallery-card-bg">
+                    <span class="viz-icon">🌈</span>
+                </div>
+                <div class="viz-gallery-card-content">
+                    <h3>Psychedelic Kaleidoscope</h3>
+                    <p>8-fold symmetric drawing with hue cycling, warp distortion, glow, and auto-paint Lissajous
+                        curves. Five trippy presets.</p>
+                    <span class="viz-launch">Launch →</span>
+                </div>
+            </a>
+
+            <!-- Audio Visualizer Card -->
+            <a href="audio-visualizer.html" class="viz-gallery-card viz-card-audio">
+                <div class="viz-gallery-card-bg">
+                    <span class="viz-icon">🎵</span>
+                </div>
+                <div class="viz-gallery-card-content">
+                    <h3>Audio-Reactive Visualizer</h3>
+                    <p>6 render modes from radial spectrum to nebula clouds. Demo mode with synthesized audio or plug in
+                        your mic.</p>
+                    <span class="viz-launch">Launch →</span>
+                </div>
+            </a>
+
+            <!-- Fluid Dynamics Card -->
+            <a href="fluid-dynamics.html" class="viz-gallery-card viz-card-fluid">
+                <div class="viz-gallery-card-bg">
+                    <span class="viz-icon">🌊</span>
+                </div>
+                <div class="viz-gallery-card-content">
+                    <h3>Fluid Dynamics Simulator</h3>
+                    <p>Real-time Navier-Stokes solver. Click &amp; drag to inject colorful dye with adjustable
+                        viscosity,
+                        diffusion, and force.</p>
+                    <span class="viz-launch">Launch →</span>
+                </div>
+            </a>
+
+            <!-- Generative Art Card -->
+            <a href="generative-art.html" class="viz-gallery-card viz-card-genart">
+                <div class="viz-gallery-card-bg">
+                    <span class="viz-icon">🎨</span>
+                </div>
+                <div class="viz-gallery-card-content">
+                    <h3>Generative Art Studio</h3>
+                    <p>Flow Fields, Strange Attractors, Reaction-Diffusion, and L-Systems. Tweak parameters and export
+                        as PNG.</p>
+                    <span class="viz-launch">Launch →</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-brand">🐍 PythonMagic</div>
+        <p>Built with 💛 and Python</p>
+        <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;min-width:14px"><defs><linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient><linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient><linearGradient id="gf3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient></defs><style>@keyframes facet-shimmer{0%,100%{opacity:0}15%{opacity:.9}30%{opacity:0}}@keyframes gem-rotate{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-3deg) scale(1.02)}}@keyframes sparkle-pop{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}.gem-body{transform-origin:12px 12px;animation:gem-rotate 4s ease-in-out infinite}.shimmer-1{animation:facet-shimmer 3s ease-in-out infinite}.shimmer-2{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:1s}.shimmer-3{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:2s}.sparkle{transform-origin:center;animation:sparkle-pop 2.5s ease-in-out infinite}.sparkle:nth-child(2){animation-delay:.8s}.sparkle:nth-child(3){animation-delay:1.6s}</style><g class="gem-body"><polygon points="12,22 4,10 20,10" fill="url(#gf1)"/><polygon points="4,10 8,3 12,6 12,10" fill="url(#gf2)"/><polygon points="20,10 16,3 12,6 12,10" fill="url(#gf3)"/><polygon points="8,3 12,1.5 16,3 12,6" fill="#e63946"/><polygon points="4,10 12,10 12,22" fill="url(#gf2)" opacity=".7"/><polygon points="20,10 12,10 12,22" fill="url(#gf1)" opacity=".8"/><polygon class="shimmer-1" points="4,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-2" points="20,10 12,10 12,22" fill="white" opacity="0"/><polygon class="shimmer-3" points="8,3 12,1.5 16,3 12,6" fill="white" opacity="0"/></g><g><circle class="sparkle" cx="3" cy="5" r=".8" fill="white" opacity="0"/><circle class="sparkle" cx="21" cy="4" r=".6" fill="white" opacity="0"/><circle class="sparkle" cx="22" cy="16" r=".7" fill="white" opacity="0"/></g></svg>
+            GarnetGrid
+        </a>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/magic.js"></script>
+</body>
+
+</html>
