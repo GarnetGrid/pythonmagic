@@ -1,0 +1,37 @@
+# PythonMagic — Demo Site
+# Block aggressive crawlers and scrapers from mirroring the site
+
+User-agent: HTTrack
+Disallow: /
+
+User-agent: wget
+Disallow: /
+
+User-agent: curl
+Disallow: /
+
+User-agent: SiteSnagger
+Disallow: /
+
+User-agent: WebCopier
+Disallow: /
+
+User-agent: Offline Explorer
+Disallow: /
+
+User-agent: Teleport
+Disallow: /
+
+User-agent: WebZIP
+Disallow: /
+
+User-agent: WebReaper
+Disallow: /
+
+User-agent: Scrapy
+Disallow: /
+
+User-agent: *
+Disallow: /css/
+Disallow: /js/
+Allow: /
